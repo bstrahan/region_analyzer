@@ -22,12 +22,6 @@ namespace region_analyzer_tests
                                            { 115, 210, 6, 5, 230, 220},
                                            { 0, 80, 45, 95, 170, 145}};
         }
-
-        [TestMethod]
-        public void WriteGridToConsole()
-        {
-            GridGenerator.WriteGridToConsole(staticGrid);
-        }
     }
 
     [TestClass]

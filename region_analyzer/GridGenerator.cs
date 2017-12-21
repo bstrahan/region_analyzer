@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace region_analyzer_tests
+namespace region_analyzer
 {
     public static class GridGenerator
     {
@@ -27,7 +27,7 @@ namespace region_analyzer_tests
 
         public static void WriteGridToConsole(float[,] grid)
         {
-            for (var x = 0; x < grid.GetLength(0); x++) {
+            for (var x = grid.GetLength(0) - 1; x >= 0 ; x--) {
                 Console.Write("|");
                 for (var y = 0; y < grid.GetLength(1); y++) {
                     Console.Write($"   {grid[x, y].ToString("000.00")}   |");

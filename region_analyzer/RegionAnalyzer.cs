@@ -45,7 +45,11 @@ namespace region_analyzer
                 }
             }
 
-            return regions;
+            regions.ForEach(r => r.DetermineCenterOfMass());
+
+            Regions = regions;
+
+            return Regions;
         }
 
         private List<Coordinate> AnalyzeAdjacentPoints(Coordinate point)

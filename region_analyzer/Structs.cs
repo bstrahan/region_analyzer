@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace region_analyzer
 {
-
     public class InterestingRegion : ICollection<Coordinate>, IEnumerable<Coordinate>
     {
         public List<Coordinate> ComponentPoints { get; set; }
-        public Coordinate CenterOfMass { get; set; }
+        public Tuple<decimal, decimal> CenterOfMass { get; set; }
 
         public float[,] Region { get; set; }
 
@@ -31,6 +31,19 @@ namespace region_analyzer
             Region = other.Region;
             Calculator = other.Calculator;
             this.ComponentPoints = new List<Coordinate>();
+        }
+
+        public void DetermineCenterOfMass()
+        {
+            CenterOfMass = Calculator.Calc(ComponentPoints);
+        }
+
+        public string GetSummary()
+        {
+            var points = ComponentPoints.Select(p => $"({p.Y},{p.X})");
+            return $"Sub-Region:\n" +
+                   $"\tPoints: {{ { string.Join(", ", points)} }}\n" +
+                   $"\tC. of Mass: ({CenterOfMass.Item2}, {CenterOfMass.Item1})";
         }
 
         public void Add(Coordinate item)
